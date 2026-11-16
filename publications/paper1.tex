@@ -1,0 +1,26 @@
+% Coloured stripe along the page edge for this publication
+\backgroundsetup{
+  scale=1,
+  color=black,
+  opacity=1,
+  angle=90,
+  position=current page.north,
+  vshift=0,
+  hshift=0,
+  contents={
+    \textcolor{palepink}{\rule{\stripewidth}{\paperheight}}
+  }
+}
+\chapter[\quad Short Title of Publication 1]{Full Title of Publication 1}\label{chapter:p1}
+
+The publication presented in this chapter has been published in \note{venue}.
+The content of this chapter is as published under the \note{license}.
+\vspace{1cm}
+
+\begin{pubboxed}{palepink}
+\noindent\cite{placeholderP1} \highlightnames*{1}\fullcite{placeholderP1}
+\end{pubboxed}
+
+\newpage
+% Put the paper PDF in publications/pdfs/ and uncomment:
+% \includepdf[pages=-,pagecommand={}]{publications/pdfs/paper1.pdf}

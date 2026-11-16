@@ -1,0 +1,38 @@
+\part{Publications}\label{part:publications}
+\newpage
+
+\let\oldthechapter=\thechapter % save default chapter format
+
+\setcounter{chapter}{0}
+% \renewcommand{\thechapter}{\Alph{chapter}}%
+% https://tex.stackexchange.com/questions/175073/add-text-before-part-number-in-table-of-contents
+\renewcommand{\thechapter}{P\arabic{chapter}}
+\titleformat{\chapter}{\Huge\bfseries}{}{0pt}{\thechapter\newline\newline}%
+\renewcommand{\theHchapter}{otherchapter\thechapter}
+
+\definecolor{stripecolor1}{RGB}{1,121,111} 
+\definecolor{stripecolor2}{RGB}{0,201,87} 
+\definecolor{stripecolor3}{RGB}{1,121,111}
+\definecolor{stripecolor4}{RGB}{0,201,87}
+\definecolor{stripecolor5}{RGB}{1,121,111}
+\definecolor{stripecolor6}{RGB}{0,201,87}
+\definecolor{stripecolor7}{RGB}{1,121,111}
+\definecolor{palepink}{RGB}{242, 219, 224} % https://www.schemecolor.com/fading-pastels.php
+\definecolor{linen}{RGB}{248, 236, 227}
+\definecolor{milk}{RGB}{252, 252, 246}
+\definecolor{brightgray}{RGB}{233, 240, 233}
+\definecolor{gainsboro}{RGB}{219, 219, 219}
+\definecolor{water}{RGB}{222, 243, 253} % https://www.schemecolor.com/beautiful-light-pastels-color-scheme.php
+\definecolor{lavender}{RGB}{240, 222, 253}
+\newlength{\stripewidth}
+\setlength{\stripewidth}{5mm} % Adjust the width of the colored stripe
+
+\newtcolorbox{pubboxed}[1]{colback=#1!60,colframe=#1}
+
+% One file per publication; copy publications/paper1.tex and pick another stripe colour.
+\input{publications/paper1}
+\backgroundsetup{contents={}}
+
+\let\thechapter=\oldthechapter % change back to default chapter format
+\renewcommand{\thechapter}{}
+\titleformat{\chapter}{\Huge\bfseries}{}{0pt}{\thechapter}%

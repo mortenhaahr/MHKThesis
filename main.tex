@@ -1,0 +1,421 @@
+\documentclass[12pt,a4paper,english]{book}
+
+% ---- Thesis metadata (used on front page, header, thesis details and PDF metadata) ----
+\newcommand{\thesistitle}{Determining the Limits of Self-Adaptive Behaviour of Robots from a Safety Perspective}
+\newcommand{\thesisauthor}{Morten Haahr Kristensen}
+\newcommand{\thesissupervisor}{Prof. Peter Gorm Larsen}
+\newcommand{\thesiscosupervisors}{Assoc. Prof. Lukas Esterle \\ Assoc. Prof. Cláudio Gomes} % one per line, separated by \\
+\newcommand{\thesisdate}{Submission Date}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.25cm,headheight=26pt,includeheadfoot]{geometry}
+% \usepackage{geometry}
+% \geometry{
+% 	paper=a4paper, % Change to letterpaper for US letter
+% 	inner=2.8cm, % Inner margin
+% 	outer=2.2cm, % Outer margin
+% 	bindingoffset=.5cm, % Binding offset
+% 	top=3.5cm, % Top margin
+% 	bottom=4cm, % Bottom margin
+% % 	%showframe, % Uncomment to show how the type block is set on the page
+% }
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage[hyphens]{url}
+% \usepackage[breaklinks,hidelinks]{hyperref}
+% \hypersetup{
+%     colorlinks = true,
+%     linkcolor = blue,
+%     urlcolor = teal,
+%     citecolor = blue
+% }
+
+
+% https://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[framed, numbered]{matlab-prettifier}
+\usepackage{changepage}
+\usepackage{amsmath}
+% \usepackage{hyperref}
+
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage{caption}
+\usepackage[flushleft]{threeparttable}
+\usepackage[english]{nomencl}
+\usepackage{lipsum}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage[toc,page]{appendix}
+\usepackage{dirtytalk}
+\usepackage{varioref}
+
+\usepackage{pdfpages}
+\usepackage{pifont}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=purple, 
+    citecolor=teal,
+    urlcolor=cyan,
+    pdftitle={\thesistitle},
+    pdfauthor={\thesisauthor},
+    pdfpagemode=FullScreen,
+    linkbordercolor=red,
+    }
+
+
+
+
+\usepackage{background}
+\renewcommand{\cftchappagefont}{\color{violet}\normalfont}
+\renewcommand{\cftsecpagefont}{\color{violet}\normalfont}
+\renewcommand{\cftsubsecpagefont}{\color{violet}\normalfont}
+\renewcommand{\cftpartpagefont}{\color{violet}\normalfont}
+\usepackage[notlof,notlot,nottoc]{tocbibind}
+
+\usepackage{cleveref}
+\usepackage{bookmark} % for separating bibliography from publications in bookmark	
+\usepackage{soul} % for highlighting
+\usepackage{csquotes} % for quoting
+\usepackage{epigraph} % for creating epigraph quote
+
+%%%% added
+% \usepackage{enumerate} % do not load: clashes with enumitem v3.11+ (undefined \enit@after)
+\usepackage{framed}
+% \usepackage{forloop}
+% \usepackage{contributions}
+
+
+% paragaph indentation
+% \usepackage{indentfirst}
+% \setlength{\parindent}{5mm}
+
+%%Figures
+\usepackage{tikz,bm}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning,fit,calc}
+\usetikzlibrary{decorations.pathreplacing}
+
+
+
+\definecolor{orgred}{rgb}{0.8078,0.4471,0.2314}
+\definecolor{darkgreen}{rgb}{0.4157,0.6,0.333}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\definecolor{light-gray}{gray}{0.80}
+
+\lstdefinestyle{xmlStyle}{
+  basicstyle=\ttfamily\scriptsize,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{darkgreen},
+  numbers=left,                    
+  numbersep=10pt, 
+  numberstyle=\tiny,
+  captionpos=b,
+}
+% \lstset{style=xmlStyle,escapechar=|}
+\backgroundsetup{contents={}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\newcommand\notsotiny{\@setfontsize\notsotiny\@vipt\@viipt}
+
+
+\definecolor{kpblue}{rgb}{0.21, 0.46, 0.8}
+\newcommand*\greencheck{\textcolor{codegreen}{\ding{52}}}
+\newcommand*\redcross{\textcolor{red}{\ding{55}}}
+\newcommand{\kp}[1]{{\textcolor{kpblue}{\ding{107} \textbf{KP#1:}}}}
+
+
+\lstdefinestyle{mystyle}{
+    language=ocl,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\scriptsize,
+    % basicstyle=\fontsize{6.31415}{7.18281}\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    morekeywords={let,in}
+}
+
+\lstset{style=mystyle}
+
+\lstdefinestyle{aspstyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    % basicstyle=\fontsize{6.31415}{7.18281}\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    morekeywords={not},
+    morecomment=[l]{\%},
+}
+
+
+
+
+%\usepackage{graphicx}
+% \usepackage[draft]{graphicx} % turn off image rendering
+
+% ¤¤ GLOSSARY ¤¤ %
+\usepackage[noredefwarn,acronym,toc,nopostdot]{glossaries}
+\makeglossaries
+\input{glossary.tex}
+% \defglsdisplayfirst[\glsdefaulttype]{\textit{#1}$^\tau$}
+
+%% BIBTEX %%
+% block=ragged
+\usepackage[backend=biber,bibstyle=ieee,citestyle=numeric,maxbibnames=99]{biblatex} % style=ieee
+\renewcommand*{\bibfont}{\small}
+\addbibresource{refs.bib}
+\preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% author bold: https://tex.stackexchange.com/questions/445029/higlight-a-desired-n-th-author-in-fullcites-in-cleanthesis
+
+\makeatletter
+\newcommand*{\resetnamehighlights}{\let\nhcbx@highlightlist\@empty}
+\resetnamehighlights
+\newcommand*{\highlightnames}{%
+  \@ifstar{\resetnamehighlights\highlightnames@add}{\highlightnames@add}}
+\newcommand*{\highlightnames@add@inner}[2]{%
+  \listeadd{#1}{\the\numexpr#2\relax}}
+\newcommand*{\highlightnames@add}{%
+  \forcsvlist{\highlightnames@add@inner\nhcbx@highlightlist}}
+\newcommand*{\mkbibhighlightnthname}[1]{%
+  \xifinlist{\the\value{listcount}}{\nhcbx@highlightlist}
+    {\underline{#1}}
+    {#1}}
+\makeatother
+\DeclareNameWrapperFormat{highlightnthname}{%
+  \renewcommand*{\mkbibcompletename}{\mkbibhighlightnthname}%
+  #1}
+\DeclareCiteCommand{\fullcite}
+  {\usebibmacro{prenote}}
+  {\usedriver
+     {\DeclareNameWrapperAlias{author}{highlightnthname}%
+      \DeclareNameWrapperAlias{editor}{highlightnthname}%
+      \DeclareNameWrapperAlias{translator}{highlightnthname}%
+      \DeclareNameWrapperAlias{sortname}{highlightnthname}}
+     {\thefield{entrytype}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+  \preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%% Prefix of publications: https://tex.stackexchange.com/questions/383202/biblatex-using-prefix-for-selected-keywords-only
+\renewbibmacro*{cite}{%
+  \printtext[bibhyperref]{%
+    \printfield{labelprefix}%
+    \ifkeyword{publication}{P}{}%
+    \printfield{labelnumber}%
+    \ifbool{bbx:subentry}
+      {\printfield{entrysetcount}}
+      {}}}
+
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+      \printfield{labelprefix}%
+      \ifkeyword{publication}{P}{}%
+      \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+
+
+
+
+% make fullcite print out all the author names
+% \preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
+
+% to be able to have figure and table side by side
+% \usepackage{float}
+% \usepackage{floatrow}
+% % Table float box with bottom caption, box width adjusted to content
+% \newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+
+%%%%% Author bold fullcite
+
+%%%%%
+
+\definecolor{mygreen}{RGB}{112,173,71}
+\definecolor{myblue}{RGB}{91,155,213}
+
+\definecolor{acqcolor}{RGB}{197, 90, 17}
+\definecolor{intcolor}{RGB}{191, 144, 0}
+\definecolor{depcolor}{RGB}{0, 176, 80}
+
+
+
+\usepackage{outlines}
+\usepackage{tcolorbox}
+% RQs box
+\newtcolorbox{hypothesis}[1]{colback=myblue!30!white,colframe=myblue!100!black,fonttitle=\bfseries,title=#1}
+% RObjective 
+\newtcolorbox{mybox2}[1]{colback=orange!30!white,colframe=orange!70!white,fonttitle=\bfseries,title=#1}
+% contributions
+\newtcolorbox{contr}[1]{colback=mygreen!40!white,colframe=mygreen!100!white,fonttitle=\bfseries,title=#1}
+
+%%%%%%%%%% BOX for publications in part II
+\newenvironment{pubbox}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+
+
+
+%%%%%%%%%%
+
+% --- set footer and header ---
+\pagestyle{fancy}
+\fancyhf{}
+\assignpagestyle{\chapter}{fancy}
+\assignpagestyle{\tableofcontents}{fancy}
+
+% \usepackage{tocloft}
+% \tocloftpagestyle{fancy}
+
+
+\title{\thesistitle} % to reference as \title, dont use \maketitle
+\makeatletter\let\Title\@title\makeatother
+
+%\expandafter\newcommand\csname r@tocindent4\endcsname{4in}
+% \setcounter{tocdepth}{2}
+% \setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{1}
+
+
+\newlist{steps}{enumerate}{1}
+\setlist[steps, 1]{leftmargin=1.5cm,label = Step \arabic*:}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+%\lhead{\Title}
+\rhead{\nouppercase{\rightmark}}
+\lhead{\Title}
+\rfoot{\includegraphics[height=1cm]{images/aulogo_uk_var2_blue.pdf}} % right header logo
+\cfoot{\thepage}
+\setlength\headheight{16pt}
+\setlength{\footskip}{50pt}
+\lhead{\Title} %rightH title
+
+
+\newlist{underlinedescription}{description}{1}
+\setlist[underlinedescription]{style=nextline, font=\normalfont\ul}
+
+% inline note to self, e.g. \note{rewrite this paragraph}
+\newcommand{\note}[1]{{\textcolor{red}{\textbf{NOTE: #1}}}}
+
+
+\begin{document}
+\pagenumbering{roman}
+\input{frontpage.tex}
+
+\input{chapters/start/abstract}
+\newpage
+\input{chapters/start/acknowledgements}
+\newpage
+\input{chapters/start/preface}
+\newpage
+\input{chapters/start/thesis_details}
+\clearpage
+\hypersetup{
+	linkcolor=violet,
+}
+\printglossary[type=\acronymtype]
+\printglossary
+\hypersetup{
+	linkcolor=black,
+}
+
+% \listoffigures
+% \newpage
+
+% \listoftables
+% \newpage
+
+\addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}
+\tableofcontents
+\cleardoublepage
+\thispagestyle{fancy}
+
+\newpage
+\pagenumbering{arabic}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\definecolor{ref_f}{RGB}{1,121,111}
+\hypersetup{
+	linkcolor=ref_f,
+}
+
+\newpage
+\part{Summary Report}\label{part:summary}
+\input{chapters/1_introduction/chapter}
+\input{chapters/2_background/chapter}
+\input{chapters/3_chapter/chapter}
+\input{chapters/4_chapter/chapter}
+\input{chapters/5_chapter/chapter}
+\input{chapters/6_conclusion/chapter}
+
+\clearpage
+\printbibliography[heading=bibintoc,title={References}]
+\clearpage
+
+\newpage
+\input{chapters/publications}
+
+\end{document}
+
